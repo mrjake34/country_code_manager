@@ -1,6 +1,6 @@
 name: country_code_manager
 description: "This package is used to get country code and country name from country code."
-version: 1.0.5
+version: 1.0.6
 repository: https://github.com/mrjake34/country_code_manager
 homepage: https://www.efestech.com.tr
 

@@ -22,3 +22,7 @@
 
 * Some bugs fixed
 * Display a bottom sheet modal for users to select a country
+
+## 1.0.6
+
+* Some bugs fixed

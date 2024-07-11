@@ -26,7 +26,7 @@ dependencies:
 
 ## Usage
 
-# Initialization
+### Initialization
 
 Initialize the CountryCodeManager in your app's initialization process:
 
@@ -34,7 +34,7 @@ Initialize the CountryCodeManager in your app's initialization process:
   await CountryCodeManager.instance.init();
 ```
 
-# Displaying Country Flags
+### Displaying Country Flags
 
 Use the ShowFlag widget to display a flag for a specific country code:
 
@@ -47,7 +47,7 @@ Customization:
 Flag Size: Adjust width and height properties of the ShowFlag widget.
 Fit: Use the fit property to control how the flag image fits within the widget.
 
-# Country Selection Widget (ShowCountries)
+### Country Selection Widget (ShowCountries)
 
 Display a bottom sheet modal for users to select a country:
 
@@ -66,7 +66,7 @@ showName: Whether to display the country name (default: true).
 showDialCode: Whether to display the country's dial code (default: true).
 shape: Customize the shape of the list tiles (e.g., RoundedRectangleBorder).
 
-# Country Selection Dropdown (Alternative)
+### Country Selection Dropdown (Alternative)
 
 You can also use a DropdownButton for country selection:
 
@@ -92,7 +92,7 @@ DropdownButton<String>(
 
 
 
-# Localization (Optional)
+### Localization (Optional)
 
 To use localized country names, provide the language parameter during initialization:
 
