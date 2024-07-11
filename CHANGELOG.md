@@ -26,3 +26,7 @@
 ## 1.0.6
 
 * Some bugs fixed
+
+## 1.0.7
+
+* README fixed
