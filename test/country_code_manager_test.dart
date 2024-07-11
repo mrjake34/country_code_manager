@@ -1,4 +1,5 @@
-import 'package:country_code_manager/src/country_code_manager.dart';
+import 'package:country_code_manager/country_code_manager.dart';
+import 'package:country_code_manager/src/country_code_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -30,6 +31,21 @@ void main() {
         ),
       ),
       findsOneWidget,
+    );
+  });
+
+  test('CountryCodeLocalization', () async {
+    final countryCodeLocalization = CountryCodeLocalization.instance;
+    await countryCodeLocalization.load(const Locale('tr'));
+    print(countryCodeLocalization.supportedLanguages);
+  });
+
+  test('Init test', () async {
+    final countryCodeManager = CountryCodeManager.instance;
+    await countryCodeManager.init(const Locale('tr'));
+    expect(
+      countryCodeManager.countries.first.name,
+      'Afghanistan',
     );
   });
 }
