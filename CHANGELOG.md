@@ -1,3 +1,11 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Ralease version of package
+
+## 1.0.1
+
+* Some bugs fixed
+
+## 1.0.2
+
+* Some bugs fixed

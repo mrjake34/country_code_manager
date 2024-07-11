@@ -1,39 +1,82 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# country_code_manager_manager 
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+[![Pub Version](https://img.shields.io/pub/v/country_code_manager.svg?style=flat-square)](https://pub.dev/packages/country_code_manager_manager)
+[![style: very good analysis][badge]][badge_link]
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter package to simplify the use of country codes, names, and flags in your applications.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* **Easy Country Selection:** Provides a convenient widget for selecting countries from a list.
+* **Customizable:** Adjust flag size, display format, and other properties.
+* **Localized Country Names:** Supports multiple languages for displaying country names.
+* **Asset Integration:** Seamlessly integrates with your app's assets for flag images.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the `country_code_manager` package to your `pubspec.yaml` file:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  country_code_manager: ^latest_version
 ```
 
-## Additional information
+Usage
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+Initialization
+
+Initialize the CountryCodeManager in your app's initialization process:
+
+```dart
+  await CountryCodeManager.instance.init();
+```
+
+Displaying Country Flags
+
+Use the ShowFlag widget to display a flag for a specific country code:
+
+```dart
+ShowFlag(countryCode: 'US') // Displays the flag for the United States
+```
+
+Country Selection Widget
+
+Create a dropdown or other interactive widget to allow users to select a country:
+
+
+```dart
+DropdownButton<String>(
+  items: CountryCodeManager.instance.countries.map((Country country) {
+    return DropdownMenuItem<String>(
+      value: country.code,
+      child: Row(
+        children: [
+          ShowFlag(countryCode: country.code, width: 24),
+          SizedBox(width: 8),
+          Text(country.name),
+        ],
+      ),
+    );
+  }).toList(),
+  onChanged: (value) {
+    // Handle country selection
+  },
+)
+```
+
+Localization (Optional)
+
+To use localized country names, provide the language parameter during initialization:
+
+```dart
+await CountryCodeManager.instance.init(SupportedLanguage.en); // English
+```
+
+Supported Languages:
+
+English (en)
+Customization
+
+Flag Size: Adjust width and height properties of the ShowFlag widget.
+Fit: Use the fit property to control how the flag image fits within the widget.
+Add More Languages: Expand the SupportedLanguage enum and add corresponding JSON files in the locale folder.

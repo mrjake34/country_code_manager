@@ -1,10 +1,10 @@
-import 'package:country_code/src/country_code_manager.dart';
+import 'package:country_code_manager/src/country_code_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('adds one to input values', () {
-    CountryCodeManager countryCodeManager = CountryCodeManager.instance;
+    final countryCodeManager = CountryCodeManager.instance;
     expect(countryCodeManager.countries, isNotEmpty);
   });
 
@@ -24,8 +24,12 @@ void main() {
       ),
     );
     expect(
-        find.image(AssetImage(
-            CountryCodeManager.instance.countries.first.flagUri ?? '')),
-        findsOneWidget);
+      find.image(
+        AssetImage(
+          CountryCodeManager.instance.countries.first.flagUri ?? '',
+        ),
+      ),
+      findsOneWidget,
+    );
   });
 }
