@@ -7,6 +7,9 @@ A Flutter package to simplify the use of country codes, names, and flags in your
 
 ## Features
 
+
+<img src="https://github.com/mrjake34/country_code_manager/blob/main/screenshots/screenshot1.png" width="240"/>
+
 * **Easy Country Selection:** Provides a convenient widget for selecting countries from a list.
 * **Customizable:** Adjust flag size, display format, and other properties.
 * **Localized Country Names:** Supports multiple languages for displaying country names.
