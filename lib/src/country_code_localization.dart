@@ -38,20 +38,25 @@ class CountryCodeLocalization {
   /// The file name should be the language code
   /// Example: en.json, fr.json
   /// The file should be in the locale folder
-  Future<void> load(Locale? locale) async {
-    var languageCode = locale?.languageCode;
-    if (locale == null || !SupportedLanguage(locale).isSupported(locale)) {
-      /// If the locale is not supported, use the default language
-      languageCode = defaultLanguage.locale.languageCode;
-    }
-    final jsonString = await rootBundle.loadString(
-      'packages/country_code_manager/locale/$languageCode.json',
-    );
-    final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
+  Future<bool> load(Locale? locale) async {
+    try {
+      var languageCode = locale?.languageCode;
+      if (locale == null || !SupportedLanguage(locale).isSupported(locale)) {
+        /// If the locale is not supported, use the default language
+        languageCode = defaultLanguage.locale.languageCode;
+      }
+      final jsonString = await rootBundle.loadString(
+        'packages/country_code_manager/locale/$languageCode.json',
+      );
+      final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
 
-    _localizedStrings = jsonMap.map((key, value) {
-      return MapEntry(key, value.toString());
-    });
+      _localizedStrings = jsonMap.map((key, value) {
+        return MapEntry(key, value.toString());
+      });
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 }
 

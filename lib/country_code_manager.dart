@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 export 'src/country.dart' show Country;
 export 'src/show_countries.dart' show ShowCountries;
+export 'src/show_dial_code.dart' show ShowDialCode;
 export 'src/show_flag.dart' show ShowFlag;
 
 /// Country code manager
@@ -21,8 +22,8 @@ class CountryCodeManager {
 
   /// Initialize the country code manager
   Future<void> init([Locale? locale]) async {
-    await CountryCodeLocalization.instance.load(locale);
-    _isLoaded = true;
+    final result = await CountryCodeLocalization.instance.load(locale);
+    _isLoaded = result;
   }
 
   /// Get the country by the code
@@ -31,8 +32,35 @@ class CountryCodeManager {
   /// CountryCodeManager.instance.getCountryByCode('US');
   /// ```
   /// This will return the country object
+  /// Example:
+  /// ```dart
+  /// Country(name: 'United States', code: 'US', dialCode: '+1')
+  /// ```
   List<Country> get countries {
     assert(_isLoaded, 'Country code manager is not initialized');
     return codes.map((e) => Country.fromJson(e)).toList();
+  }
+
+  /// Get the dial code of the country
+  /// Example:
+  /// ```dart
+  /// CountryCodeManager.instance.dialCode;
+  /// ```
+  /// This will return the dial code of the country
+  /// Example:
+  /// ```dart
+  /// ['+1', '+44', '+62', '+91']
+  /// ```
+  List<String?> get dialCode {
+    assert(_isLoaded, 'Country code manager is not initialized');
+    final intList = codes
+        .map(
+          (e) => int.tryParse(
+            Country.fromJson(e).dialCode?.replaceAll('+', '') ?? '',
+          ),
+        )
+        .toList();
+    final sortedList = intList..sort();
+    return sortedList.map((e) => '+$e').toList();
   }
 }

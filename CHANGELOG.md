@@ -30,3 +30,13 @@
 ## 1.0.7
 
 * README fixed
+
+## 1.0.8
+
+* README Screenshots added
+
+## 1.0.9
+
+* Some bugs fixed
+* ShowDialogCode added
+* Example project added

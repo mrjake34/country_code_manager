@@ -8,7 +8,9 @@ A Flutter package to simplify the use of country codes, names, and flags in your
 ## Features
 
 
-<img src="https://raw.githubusercontent.com/mrjake34/country_code_manager/main/screenshots/screenshot1.png" width="240"/>
+<img src="https://raw.githubusercontent.com/mrjake34/country_code_manager/main/screenshots/ss1.png" width="240"/>
+<img src="https://raw.githubusercontent.com/mrjake34/country_code_manager/main/screenshots/ss2.png" width="240"/>
+<img src="https://raw.githubusercontent.com/mrjake34/country_code_manager/main/screenshots/ss3.png" width="240"/>
 
 * **Easy Country Selection:** Provides a convenient widget for selecting countries from a list.
 * **Customizable:** Adjust flag size, display format, and other properties.
@@ -46,6 +48,19 @@ Customization:
 
 Flag Size: Adjust width and height properties of the ShowFlag widget.
 Fit: Use the fit property to control how the flag image fits within the widget.
+
+### Country Dial Code Selection Widget
+
+Display a PopupMenuButton for users to select a dial code:
+
+```dart
+ShowDialCode(
+  initialValue: '', ///Set a initial value
+  onSelected: (value) {
+    debugPrint(value);
+  },
+),
+```
 
 ### Country Selection Widget (ShowCountries)
 
