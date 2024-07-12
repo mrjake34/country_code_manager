@@ -16,6 +16,7 @@ A Flutter package to simplify the use of country codes, names, and flags in your
 * **Customizable:** Adjust flag size, display format, and other properties.
 * **Localized Country Names:** Supports multiple languages for displaying country names.
 * **Asset Integration:** Seamlessly integrates with your app's assets for flag images.
+* **Country Lookup:** Retrieve a `Country` object by its code.
 
 ## Installation
 
@@ -48,6 +49,18 @@ Customization:
 
 Flag Size: Adjust width and height properties of the ShowFlag widget.
 Fit: Use the fit property to control how the flag image fits within the widget.
+
+### Country Lookup (getCountryByCode)
+
+Retrieve a Country object by its code:
+
+```dart
+Country? usCountry = CountryCodeManager.instance.getCountryByCode('US');
+if (usCountry != null) {
+  print(usCountry.name); // Output: United States
+  print(usCountry.dialCode); // Output: +1
+}
+```
 
 ### Country Dial Code Selection Widget
 

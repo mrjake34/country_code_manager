@@ -31,6 +31,12 @@ class CountryCodeManager {
   /// ```dart
   /// CountryCodeManager.instance.getCountryByCode('US');
   /// ```
+  Country? getCountryByCode(String code) {
+    return countries.firstWhere(
+      (element) => element.code == code,
+    );
+  }
+
   /// This will return the country object
   /// Example:
   /// ```dart

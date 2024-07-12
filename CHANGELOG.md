@@ -40,3 +40,7 @@
 * Some bugs fixed
 * ShowDialogCode added
 * Example project added
+
+## 1.1.9
+
+* Country Lookup (getCountryByCode) added
