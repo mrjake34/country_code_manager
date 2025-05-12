@@ -1,6 +1,6 @@
 name: country_code_manager
 description: "This package is used to get country code and country name from country code."
-version: 1.1.9
+version: 1.1.10
 repository: https://github.com/mrjake34/country_code_manager
 homepage: https://www.efestech.com.tr
 
@@ -20,5 +20,3 @@ flutter:
   assets:
     - locale/
     - flags/
-
-
