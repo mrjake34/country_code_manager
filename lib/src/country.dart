@@ -73,4 +73,18 @@ class Country {
       'dial_code': dialCode,
     };
   }
+
+  /// Convert the country to a string
+  /// Example:
+  /// ```dart
+  /// Country(name: United States, code: US, dialCode: +1, flagUri: flags/us.png)
+  /// ```
+  @override
+  String toString() {
+    return 'Country(name: $name, code: $code, dialCode: $dialCode, flagUri: $flagUri)';
+  }
+
+  /// Hash code
+  @override
+  int get hashCode => code.hashCode;
 }
