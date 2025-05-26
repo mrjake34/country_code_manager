@@ -4,16 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('adds one to input values', () {
+  test('adds one to input values', () async {
     final countryCodeManager = CountryCodeManager.instance;
+    await countryCodeManager.init();
     expect(countryCodeManager.countries, isNotEmpty);
   });
 
   testWidgets('CountryCodeManager', (tester) async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+
+    final countryCodeManager = CountryCodeManager.instance;
+    await countryCodeManager.init();
+
     final button = ElevatedButton(
       onPressed: () {},
       child: Image.asset(
-        CountryCodeManager.instance.countries.first.flagUri ?? '',
+        countryCodeManager.countries.first.flagUri ?? '',
       ),
     );
 
@@ -27,7 +33,7 @@ void main() {
     expect(
       find.image(
         AssetImage(
-          CountryCodeManager.instance.countries.first.flagUri ?? '',
+          countryCodeManager.countries.first.flagUri ?? '',
         ),
       ),
       findsOneWidget,
@@ -35,6 +41,9 @@ void main() {
   });
 
   test('CountryCodeLocalization', () async {
+    final countryCodeManager = CountryCodeManager.instance;
+    await countryCodeManager.init();
+
     final countryCodeLocalization = CountryCodeLocalization.instance;
     await countryCodeLocalization.load(const Locale('tr'));
     expect(
