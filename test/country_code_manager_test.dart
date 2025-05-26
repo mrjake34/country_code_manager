@@ -37,7 +37,10 @@ void main() {
   test('CountryCodeLocalization', () async {
     final countryCodeLocalization = CountryCodeLocalization.instance;
     await countryCodeLocalization.load(const Locale('tr'));
-    print(countryCodeLocalization.supportedLanguages);
+    expect(
+      countryCodeLocalization.supportedLanguages,
+      SupportedLanguage.supportedLanguages,
+    );
   });
 
   test('Init test', () async {
