@@ -80,6 +80,7 @@ class SupportedLanguage {
 
   /// This is the list of supported languages
   static const supportedLanguages = [
+    'en',
     'af',
     'al',
     'dz',
