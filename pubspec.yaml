@@ -5,7 +5,7 @@ repository: https://github.com/mrjake34/country_code_manager
 homepage: https://www.efestech.com.tr
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ^3.0.0
 
 dependencies:
   flutter:
