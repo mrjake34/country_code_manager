@@ -30,7 +30,7 @@ class _ShowDialCodeState extends State<ShowDialCode> {
       valueListenable: _country,
       builder: (context, String? value, _) {
         return PopupMenuButton<String>(
-          popUpAnimationStyle: AnimationStyle(curve: Curves.easeInQuint),
+          popUpAnimationStyle: const AnimationStyle(curve: Curves.easeInQuint),
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.5,
           ),
