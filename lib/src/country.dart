@@ -81,10 +81,7 @@ class Country {
   /// ```
   @override
   String toString() {
+    // ignore: lines_longer_than_80_chars
     return 'Country(name: $name, code: $code, dialCode: $dialCode, flagUri: $flagUri)';
   }
-
-  /// Hash code
-  @override
-  int get hashCode => code.hashCode;
 }
