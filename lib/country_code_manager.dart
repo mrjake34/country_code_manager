@@ -1,4 +1,6 @@
-import 'package:country_code_manager/src/index.dart';
+import 'package:country_code_manager/country_code_manager.dart';
+import 'package:country_code_manager/src/countries.dart';
+import 'package:country_code_manager/src/country_code_localization.dart';
 import 'package:flutter/material.dart';
 
 export 'src/country.dart' show Country;

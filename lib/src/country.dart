@@ -1,4 +1,4 @@
-import 'package:country_code_manager/src/index.dart';
+import 'package:country_code_manager/src/country_code_localization.dart';
 
 /// Country class
 /// This class is used to store the country information
