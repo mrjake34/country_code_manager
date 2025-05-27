@@ -44,7 +44,7 @@ class CountryCodeManager {
   /// ```
   List<Country> get countries {
     assert(_isLoaded, 'Country code manager is not initialized');
-    return codes.map((e) => Country.fromJson(e)).toList();
+    return codes.map(Country.fromJson).toList();
   }
 
   /// Get the dial code of the country
