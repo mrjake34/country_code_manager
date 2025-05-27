@@ -78,7 +78,13 @@ class _ShowDialCodeState extends State<ShowDialCode> {
             widget.onSelected?.call(value);
             _country.value = value;
           },
-          child: Text(value ?? widget.initialValue ?? ''),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: 48,
+              minHeight: 48,
+            ),
+            child: Text(value ?? widget.initialValue ?? ''),
+          ),
         );
       },
     );
