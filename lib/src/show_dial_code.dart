@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 /// This widget is used to show the dial code
 class ShowDialCode extends StatefulWidget {
   /// Show dial code constructor
-  const ShowDialCode({Key? key, this.onSelected, this.initialValue})
-      : super(key: key);
+  const ShowDialCode({super.key, this.onSelected, this.initialValue});
 
   /// On selected callback
   /// This callback is called when the user selects a dial code

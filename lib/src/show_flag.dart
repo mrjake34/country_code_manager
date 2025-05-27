@@ -5,11 +5,11 @@ class ShowFlag extends StatelessWidget {
   /// Show the flag of the country
   const ShowFlag({
     required this.countryCode,
-    Key? key,
+    super.key,
     this.width = 32,
     this.height,
     this.fit = BoxFit.contain,
-  }) : super(key: key);
+  });
 
   /// The country code
   /// Example: US, FR
