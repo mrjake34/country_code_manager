@@ -89,8 +89,6 @@ void main() {
       expect(
         selectedCountry,
         equals(CountryCodeManager.instance.countries.first),
-        skip: true,
-        reason: 'Probably because equals method is not implemented.',
       );
     });
 

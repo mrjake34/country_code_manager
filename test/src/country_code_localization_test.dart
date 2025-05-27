@@ -26,7 +26,6 @@ void main() {
         expect(localization.supportedLanguages, isNotEmpty);
         expect(localization.supportedLanguages.contains('en'), true);
       },
-      skip: 'Skipping due to potential localization file absence',
     );
 
     test('translate should return null for null input', () {
