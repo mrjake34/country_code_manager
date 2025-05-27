@@ -21,7 +21,7 @@ class Country extends Equatable {
 
   /// Converts a JSON map to a Country object
   ///
-  /// Takes a Map<String, dynamic> representing country data
+  /// Takes a `Map<String, dynamic>` representing country data
   /// Returns a Country instance created from the JSON data
   ///
   /// Example:
@@ -70,7 +70,7 @@ class Country extends Equatable {
 
   /// Convert the Country object to a JSON representation
   ///
-  /// Returns a Map<String, dynamic> containing the serialized country data
+  /// Returns a `Map<String, dynamic>` containing the serialized country data
   /// Used for JSON serialization with json_serializable package
   Map<String, dynamic> toJson() {
     return {

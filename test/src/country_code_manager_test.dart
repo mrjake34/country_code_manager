@@ -73,7 +73,7 @@ void main() {
       });
 
       test('init should handle null locale', () async {
-        await manager.init(null);
+        await manager.init();
         expect(manager.countries, isNotEmpty);
       });
 

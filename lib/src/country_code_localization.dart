@@ -32,7 +32,7 @@ class CountryCodeLocalization {
   ///
   /// This property provides a fallback language when no specific locale is specified
   /// or when the requested locale is not supported by the localization system.
-  final defaultLanguage = SupportedLanguage.en;
+  final SupportedLanguage defaultLanguage = SupportedLanguage.en;
 
   Map<String, String>? _localizedStrings;
 
