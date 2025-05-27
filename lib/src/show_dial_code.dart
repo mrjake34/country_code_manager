@@ -1,20 +1,50 @@
 import 'package:country_code_manager/country_code_manager.dart';
 import 'package:flutter/material.dart';
 
-/// Show dial code
-/// This widget is used to show the dial code
+/// A stateful widget for selecting and displaying a dial code.
+///
+/// This widget allows users to choose a dial code with optional initial value
+/// and a callback for when a selection is made.
+///
+/// See [_ShowDialCodeState] for the implementation details.
 class ShowDialCode extends StatefulWidget {
-  /// Show dial code constructor
-  const ShowDialCode({Key? key, this.onSelected, this.initialValue})
-      : super(key: key);
+  /// Creates a [ShowDialCode] widget for selecting a dial code.
+  ///
+  /// The [onSelected] parameter allows setting a callback function that is triggered
+  /// when a dial code is selected. The [initialValue] parameter sets the initial
+  /// dial code to display.
+  ///
+  /// Example:
+  ///
+  ///
+  /// ShowDialCode(
+  ///   onSelected: (dialCode) {
+  ///     print('Selected dial code: $dialCode');
+  ///   },
+  ///   initialValue: '+1',
+  /// )
+  ///
+  const ShowDialCode({super.key, this.onSelected, this.initialValue});
 
-  /// On selected callback
-  /// This callback is called when the user selects a dial code
-  final void Function(String)? onSelected;
+  /// A callback function that is triggered when a dial code is selected.
+  ///
+  /// The [onSelected] function receives the selected dial code as a parameter.
+  /// This allows the parent widget to respond to the user's dial code selection.
+  ///
+  /// Example:
+  ///
+  /// ShowDialCode(
+  ///   onSelected: (dialCode) {
+  ///     print('Selected dial code: $dialCode');
+  ///   },
+  /// )
+  ///
+  final ValueChanged<String>? onSelected;
 
-  /// Initial value
-  /// This is the initial value of the dial code
-  /// Example: +1
+  /// The initial dial code value to display when the widget is first created.
+  ///
+  /// If not provided, the widget will show an empty string initially.
+  /// This value can be overridden when a new dial code is selected.
   final String? initialValue;
 
   @override
@@ -28,13 +58,13 @@ class _ShowDialCodeState extends State<ShowDialCode> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: _country,
-      builder: (context, String? value, _) {
+      builder: (context, String? value, Widget? child) {
         return PopupMenuButton<String>(
-          popUpAnimationStyle: AnimationStyle(curve: Curves.easeInQuint),
+          popUpAnimationStyle: const AnimationStyle(curve: Curves.easeInQuint),
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.5,
           ),
-          itemBuilder: (context) {
+          itemBuilder: (BuildContext context) {
             return CountryCodeManager.instance.dialCode
                 .map(
                   (e) => PopupMenuItem<String>(
@@ -44,11 +74,17 @@ class _ShowDialCodeState extends State<ShowDialCode> {
                 )
                 .toList();
           },
-          onSelected: (value) {
+          onSelected: (String value) {
             widget.onSelected?.call(value);
             _country.value = value;
           },
-          child: Text(value ?? widget.initialValue ?? ''),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: 48,
+              minHeight: 48,
+            ),
+            child: Text(value ?? widget.initialValue ?? ''),
+          ),
         );
       },
     );

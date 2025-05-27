@@ -1,4 +1,6 @@
-import 'package:country_code_manager/src/index.dart';
+import 'package:country_code_manager/country_code_manager.dart';
+import 'package:country_code_manager/src/countries.dart';
+import 'package:country_code_manager/src/country_code_localization.dart';
 import 'package:flutter/material.dart';
 
 export 'src/country.dart' show Country;
@@ -44,7 +46,7 @@ class CountryCodeManager {
   /// ```
   List<Country> get countries {
     assert(_isLoaded, 'Country code manager is not initialized');
-    return codes.map((e) => Country.fromJson(e)).toList();
+    return codes.map(Country.fromJson).toList();
   }
 
   /// Get the dial code of the country

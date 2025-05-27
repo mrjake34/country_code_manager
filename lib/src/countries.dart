@@ -1,4 +1,9 @@
-/// List of countries with their name, code, and dial code.
+/// A list of country codes, names, and dial codes.
+///
+/// Each map in the list contains three key-value pairs:
+/// - 'name': The full name of the country in its native language or English
+/// - 'code': The two-letter ISO country code
+/// - 'dial_code': The international telephone dialing code for the country
 const List<Map<String, String>> codes = [
   {
     'name': 'افغانستان',
