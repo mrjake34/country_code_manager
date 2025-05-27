@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: country_code_manager
-      sha256: "5653436620dd00ad7e76fe320cf783cb634f38e24f087920782c077c799fda64"
+      sha256: f84d43b5b925008d38146ef0a9d659afe1c65479008f6b1e14aff45b0f472245
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.9"
+    version: "1.1.10"
   cupertino_icons:
     dependency: "direct main"
     description:
