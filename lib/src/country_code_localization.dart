@@ -3,29 +3,48 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// This class is used to translate the country code to the language
-/// The language file should be in the locale folder
-/// The file name should be the language code
+/// Manages localization for country codes, providing translation and loading of language-specific resources.
+///
+/// This singleton class handles loading and translating country code localization files,
+/// supporting multiple languages and providing a default language fallback mechanism.
 class CountryCodeLocalization {
   CountryCodeLocalization._();
 
   static final CountryCodeLocalization _instance = CountryCodeLocalization._();
 
-  /// Get the instance of the [CountryCodeLocalization]
+  /// Provides access to the singleton instance of [CountryCodeLocalization].
+  ///
+  /// This getter returns the single, globally accessible instance of the
+  /// [CountryCodeLocalization] class, ensuring consistent localization
+  /// management across the application.
+  ///
+  /// Returns the singleton [CountryCodeLocalization] instance.
   static CountryCodeLocalization get instance => _instance;
 
-  /// Supported languages
-  final supportedLanguages = SupportedLanguage.supportedLanguages;
+  /// A list of all supported languages for localization.
+  ///
+  /// This property provides access to the predefined set of supported languages
+  /// that can be used for country code localization. It allows checking and
+  /// selecting from the available language options in the localization system.
+  final List<String> supportedLanguages = SupportedLanguage.supportedLanguages;
 
-  /// Default language
+  /// Defines the default language for localization, set to English.
+  ///
+  /// This property provides a fallback language when no specific locale is specified
+  /// or when the requested locale is not supported by the localization system.
   final defaultLanguage = SupportedLanguage.en;
 
   Map<String, String>? _localizedStrings;
 
-  /// Translate the code to the language
-  /// If the code is not found, it will return the code itself
-  /// Example: en -> English
-  /// Example: fr -> French
+  /// Translates a given localization code to its corresponding localized string.
+  ///
+  /// Retrieves the localized string for the provided [code] from the [_localizedStrings] map.
+  /// If the value is a list, it converts the list to a comma-separated string by removing
+  /// square brackets and joining the elements.
+  ///
+  /// [code] The localization code to translate.
+  ///
+  /// Returns the translated string, or `null` if no translation is found.
   String? translate(String? code) {
     final value = _localizedStrings?[code];
     if (value is List) {
@@ -34,15 +53,20 @@ class CountryCodeLocalization {
     return value;
   }
 
-  /// Load the language file from the locale folder
-  /// The file name should be the language code
-  /// Example: en.json, fr.json
-  /// The file should be in the locale folder
+  /// Loads localization data for a specified locale, falling back to the default language if needed.
+  ///
+  /// Attempts to load a JSON localization file for the given locale. If the locale is not supported
+  /// or is null, it falls back to the default language. Parses the JSON file and populates
+  /// [_localizedStrings] with the localization key-value pairs.
+  ///
+  /// [locale] The locale to load localization data for.
+  ///
+  /// Returns `true` if the localization file is successfully loaded, `false` otherwise.
   Future<bool> load(Locale? locale) async {
     try {
       var languageCode = locale?.languageCode;
       if (locale == null || !SupportedLanguage(locale).isSupported(locale)) {
-        /// If the locale is not supported, use the default language
+        // If the locale is not supported, use the default language
         languageCode = defaultLanguage.locale.languageCode;
       }
       final jsonString = await rootBundle.loadString(
@@ -54,31 +78,49 @@ class CountryCodeLocalization {
         return MapEntry(key, value.toString());
       });
       return true;
-    } catch (_) {
+    } on Exception catch (_) {
       return false;
     }
   }
 }
 
-/// Supported language
-/// Example: en, fr
+/// Represents a supported language for localization purposes.
+///
+/// This class encapsulates a [Locale] and provides methods to check language support,
+/// serving as a utility for managing language-specific localization in the application.
 class SupportedLanguage {
-  /// [SupportedLanguage] constructor
-  /// with the [locale] parameter
+  /// Constructs a [SupportedLanguage] instance with the specified [locale].
+  ///
+  /// This constructor initializes a [SupportedLanguage] object with a given [Locale],
+  /// representing a specific language for localization purposes.
+  ///
+  /// [locale] The locale associated with this supported language.
   const SupportedLanguage(this.locale);
 
-  /// English language for the default language
+  /// Represents the English language locale for localization purposes.
+  ///
+  /// This static constant provides a pre-configured [SupportedLanguage] instance
+  /// for the English language, using the standard 'en' language code.
   static const en = SupportedLanguage(Locale('en'));
 
-  /// [Locale] parameter
-  /// for the language
+  /// The locale associated with this language.
+  ///
+  /// Represents the specific locale (language and optional country code)
+  /// for the supported language instance.
   final Locale locale;
 
-  /// Check if the locale is supported
+  /// Checks if the given [locale] is supported by verifying its language code is in the list of supported languages.
+  ///
+  /// Returns `true` if the locale's language code is present in [supportedLanguages], otherwise returns `false`.
   bool isSupported(Locale locale) =>
       supportedLanguages.contains(locale.languageCode);
 
-  /// This is the list of supported languages
+  /// A list of supported country codes in ISO 3166-1 alpha-2 format.
+  ///
+  /// This list includes country codes for various countries and territories,
+  /// with 'no_country' as a special case for handling scenarios without a specific country.
+  ///
+  /// The list is used for localization and country-specific operations in the application.
   static const supportedLanguages = [
     'en',
     'af',
