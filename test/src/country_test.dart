@@ -31,6 +31,7 @@ void main() {
         'name': 'France',
         'code': 'FR',
         'dial_code': '+33',
+        'flag_uri': null, // flag_uri can be null
       };
 
       final country = Country.fromJson(json);
@@ -64,6 +65,7 @@ void main() {
         'name': 'Canada',
         'code': 'CA',
         'dial_code': '+1',
+        'flag_uri': null, // flag_uri is generated, not stored
       });
     });
 
