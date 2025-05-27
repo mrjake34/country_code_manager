@@ -16,7 +16,7 @@ void main() {
             body: Builder(
               builder: (BuildContext context) {
                 return ElevatedButton(
-                  onPressed: () => ShowCountries.show(context),
+                  onPressed: () => const ShowCountries().show(context),
                   child: const Text('Show Countries'),
                 );
               },
@@ -40,12 +40,10 @@ void main() {
             body: Builder(
               builder: (BuildContext context) {
                 return ElevatedButton(
-                  onPressed: () => ShowCountries.show(
-                    context,
+                  onPressed: () => const ShowCountries(
                     showFlag: false,
                     showName: false,
-                    showDialCode: true,
-                  ),
+                  ).show(context),
                   child: const Text('Show Countries'),
                 );
               },
@@ -72,7 +70,7 @@ void main() {
               builder: (BuildContext context) {
                 return ElevatedButton(
                   onPressed: () async {
-                    selectedCountry = await ShowCountries.show(context);
+                    selectedCountry = await const ShowCountries().show(context);
                   },
                   child: const Text('Show Countries'),
                 );
@@ -108,7 +106,7 @@ void main() {
             body: Builder(
               builder: (BuildContext context) {
                 return ElevatedButton(
-                  onPressed: () => ShowCountries.show(
+                  onPressed: () => const ShowCountries().show(
                     context,
                     shape: customShape,
                   ),

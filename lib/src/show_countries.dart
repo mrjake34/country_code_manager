@@ -1,70 +1,40 @@
 import 'package:country_code_manager/country_code_manager.dart';
 import 'package:flutter/material.dart';
 
-/// Show countries
-class ShowCountries {
-  const ShowCountries._();
-
-  /// Show countries widget
-  /// This widget is used to show the countries in a modal bottom sheet
-  /// Example:
-  /// ```dart
-  /// ShowCountries.show(context);
-  /// ```
-  /// This will show the countries in a modal bottom sheet
-  /// The user can select the country
-  /// The selected country will be returned
-  /// If the user cancels the modal, it will return null
-  static Future<Country?> show(
-    BuildContext context, {
-    bool? showFlag,
-    bool? showName,
-    bool? showDialCode,
-    ShapeBorder? shape,
-  }) async {
-    return showModalBottomSheet<Country>(
-      context: context,
-      showDragHandle: true,
-      useRootNavigator: true,
-      useSafeArea: true,
-      builder: (context) {
-        return _ShowCountries(
-          showFlag: showFlag ?? true,
-          showName: showName ?? true,
-          showDialCode: showDialCode ?? true,
-          shape: shape,
-        );
-      },
-    );
-  }
-}
-
-/// Show countries widget
-/// This widget is used to show the countries
-/// Example:
-/// ```dart
-/// ShowCountries();
-/// ```
-class _ShowCountries extends StatelessWidget {
-  /// Show countries constructor
-  const _ShowCountries({
-    required this.showFlag,
-    required this.showName,
-    required this.showDialCode,
-    Key? key,
+/// A widget that displays a list of countries with optional flag, name, and dial code
+///
+/// This widget allows customizable display of country information in a scrollable list,
+/// with options to show or hide flags, names, and dial codes. It can be used to create
+/// a country selection interface with configurable appearance.
+class ShowCountries extends StatelessWidget {
+  /// Creates a new instance of [ShowCountries] with optional configuration for displaying country information
+  ///
+  /// [key] Optional widget key for identifying this widget
+  /// [showFlag] Determines whether country flags should be displayed, defaults to true
+  /// [showName] Determines whether country names should be displayed, defaults to true
+  /// [showDialCode] Determines whether country dial codes should be displayed, defaults to true
+  /// [shape] Optional custom shape for the list tiles in the country list
+  const ShowCountries({
+    super.key,
+    this.showFlag = true,
+    this.showName = true,
+    this.showDialCode = true,
     this.shape,
-  }) : super(key: key);
+  });
 
-  /// Show flag or not
+  /// Determines whether country flags should be displayed, defaults to true
   final bool showFlag;
 
-  /// Show name or not
+  /// Determines whether country names should be displayed, defaults to true
   final bool showName;
 
-  /// Show dial code or not
+  /// Determines whether country dial codes should be displayed, defaults to true
   final bool showDialCode;
 
-  /// Shape of the list tile
+  /// Optional custom shape for the list tiles in the country list
+  ///
+  /// Allows customization of the visual appearance of each country list tile
+  /// by providing a [ShapeBorder] that defines the tile's border and shape.
   final ShapeBorder? shape;
 
   @override
@@ -81,6 +51,38 @@ class _ShowCountries extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop(country);
           },
+        );
+      },
+    );
+  }
+
+  /// Displays a modal bottom sheet with a list of countries and allows selecting a country
+  ///
+  /// [context] The current build context used to show the bottom sheet
+  /// [showFlag] Optional override for displaying country flags, defaults to the class's default
+  /// [showName] Optional override for displaying country names, defaults to the class's default
+  /// [showDialCode] Optional override for displaying country dial codes, defaults to the class's default
+  /// [shape] Optional override for the shape of country list tiles, defaults to the class's default
+  ///
+  /// Returns a [Future] that completes with the selected [Country] or null if no country is selected
+  Future<Country?> show(
+    BuildContext context, {
+    bool? showFlag,
+    bool? showName,
+    bool? showDialCode,
+    ShapeBorder? shape,
+  }) async {
+    return showModalBottomSheet<Country>(
+      context: context,
+      showDragHandle: true,
+      useRootNavigator: true,
+      useSafeArea: true,
+      builder: (context) {
+        return ShowCountries(
+          showFlag: showFlag ?? this.showFlag,
+          showName: showName ?? this.showName,
+          showDialCode: showDialCode ?? this.showDialCode,
+          shape: shape ?? this.shape,
         );
       },
     );
